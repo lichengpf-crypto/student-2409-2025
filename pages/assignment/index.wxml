@@ -1,0 +1,92 @@
+<view class="page">
+
+<!-- 当未拿到 assignment_id 时，提供手动加载入口 -->
+<view class="card" wx:if="{{!assignment_id}}">
+  <view class="sec-title">加载作业详情</view>
+  <view class="row">
+    <text class="label">作业ID</text>
+    <input class="ipt" placeholder="请输入作业ID" value="{{manualAid}}" bindinput="onAidInput"/>
+  </view>
+  <button type="primary" bindtap="onLoadAssignmentTap" loading="{{loadingAssign}}">加载作业详情</button>
+</view>
+
+<!-- 作业详情 -->
+<view class="card">
+  <view class="head">
+    <view class="title">{{assignTitle || '作业详情'}}</view>
+    <view class="sub">作业ID：{{assignment_id || '（未提供）'}}　学生ID：{{student_id || '（未提供）'}}</view>
+  </view>
+
+  <view wx:if="{{assignNote}}">
+    <view class="sec-title">备注</view>
+    <view class="note">{{assignNote}}</view>
+  </view>
+
+  <view wx:if="{{wordItems.length}}">
+    <view class="sec-title">单词</view>
+    <block wx:for="{{wordItems}}" wx:key="id">
+      <view class="item">
+        <view class="text">{{item.displayText}}</view>
+        <button size="mini" bindtap="onPlayTts" data-id="{{item.id}}" data-url="{{item.fileUrl}}">
+          {{playingTtsId===item.id ? '停止' : '播放'}}
+        </button>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{dialogItems.length}}">
+    <view class="sec-title">对话</view>
+    <block wx:for="{{dialogItems}}" wx:key="id">
+      <view class="item">
+        <view class="text">{{item.displayText}}</view>
+        <button size="mini" bindtap="onPlayTts" data-id="{{item.id}}" data-url="{{item.fileUrl}}">
+          {{playingTtsId===item.id ? '停止' : '播放'}}
+        </button>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{!wordItems.length && !dialogItems.length}}">
+    <view class="empty">{{loadingAssign ? '加载作业中…' : '暂无可预听条目（请确认已加载正确的作业ID）'}}</view>
+  </view>
+</view>
+
+<!-- 次数提示 -->
+<view class="hint">
+  重录上限：{{MAX_ATTEMPTS}} 次，已用：{{attemptCount}} 次
+  <text class="left" wx:if="{{attemptCount < MAX_ATTEMPTS}}">（还可重录 {{MAX_ATTEMPTS - attemptCount}} 次）</text>
+  <text class="left warn" wx:else>（已达上限）</text>
+</view>
+
+<!-- 录音区 -->
+<view class="card">
+  <view class="sec-title">我的录音</view>
+  <view class="controls">
+    <button class="btn" type="primary" bindtap="onStartRecord" disabled="{{recording || (attemptCount >= MAX_ATTEMPTS && !recordingFilePath)}}">开始录音</button>
+    <button class="btn" type="warn" bindtap="onStopRecord" disabled="{{!recording}}">停止</button>
+    <button class="btn" bindtap="onTogglePlayRec" disabled="{{!recordingFilePath}}">{{playingRec ? '停止试听' : '试听'}}</button>
+  </view>
+
+  <view class="meta">
+    <text wx:if="{{recordingFilePath}}">文件：{{fileSizeKB}} KB · 时长：{{durationSec}} 秒</text>
+    <text wx:else>暂无录音</text>
+  </view>
+
+  <view class="actions">
+    <button class="btn ghost" bindtap="onReRecord">重录</button>
+    <button class="btn ghost" bindtap="onAbort">放弃本次</button>
+  </view>
+</view>
+
+<!-- 提交 -->
+<view class="submit">
+  <button type="primary" bindtap="onSubmit" loading="{{uploading}}" disabled="{{!recordingFilePath || uploading}}">提交</button>
+</view>
+
+<!-- 提交结果（调试用） -->
+<view class="result" wx:if="{{submission_id}}">
+  <view>提交编号：{{submission_id}}</view>
+  <view class="raw"><text selectable="true">{{submitRespRaw}}</text></view>
+</view>
+</view>
+

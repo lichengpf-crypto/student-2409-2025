@@ -1,0 +1,18 @@
+.page { padding: 12px; }
+.card { background:#fff; border-radius: 12rpx; padding: 20rpx; margin-bottom: 20rpx; box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04); }
+.h { font-size: 32rpx; font-weight: 600; margin-bottom: 12rpx; }
+.label { color:#666; font-size: 26rpx; margin-bottom: 8rpx; }
+.input, .textarea { background:#f7f7f7; border-radius: 8rpx; padding: 16rpx; }
+.btn { background:#1677ff; color:#fff; border-radius: 10rpx; padding: 20rpx; text-align:center; }
+.btn-ghost { border:1px solid #ddd; color:#333; background:#fff; border-radius:10rpx; padding: 20rpx; text-align:center; }
+.row { display:flex; gap: 16rpx; }
+.row .col { flex:1; }
+.tip { color:#999; font-size:24rpx; }
+.badge { background:#eef4ff; color:#3056d3; border-radius: 999rpx; padding: 8rpx 16rpx; font-size: 24rpx; }
+.skel { background: #f3f3f3; height: 28rpx; border-radius: 8rpx; }
+.small { font-size: 24rpx; color:#666; }
+.score { font-size: 40rpx; font-weight: 700; color: #1677ff; }
+.align-ok { color:#16a34a }
+.align-sub { color:#eab308 }
+.align-del { color:#ef4444 }
+.align-ins { color:#06b6d4 }

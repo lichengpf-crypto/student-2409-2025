@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/inbox/index",
+    "pages/assignment/index",
+    "pages/results/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "学生端",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark"
+  },
+  "sitemapLocation": "sitemap.json"
+}

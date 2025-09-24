@@ -1,0 +1,17 @@
+<view class="page">
+  <view class="block">
+    <view class="label">Submission ID</view>
+    <input class="input" placeholder="请输入/粘贴 submission_id" bindinput="onInputId" value="{{submissionId}}" />
+  </view>
+
+  <view class="block">
+    <button type="primary" loading="{{isLoading}}" bindtap="onQueryScore">查询分（只读）</button>
+  </view>
+
+  <view class="result" wx:if="{{hasResult}}">
+    <view class="status">{{statusText}}</view>
+    <view class="score" wx:if="{{overall !== null}}">总体分：{{overall}}</view>
+    <view class="recog" wx:if="{{recognizedText}}">识别文本：{{recognizedText}}</view>
+    <view class="raw"><text selectable="true">{{rawJson}}</text></view>
+  </view>
+</view>

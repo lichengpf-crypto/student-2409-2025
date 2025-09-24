@@ -1,0 +1,9 @@
+.page{ padding:12px; }
+.block{ margin-bottom:16px; }
+.label{ font-size:14px; color:#666; margin-bottom:6px; }
+.input{ border:1px solid #ddd; border-radius:8px; padding:8px 10px; }
+.result{ margin-top:16px; padding:12px; background:#fafafa; border-radius:10px; }
+.status{ font-size:14px; margin-bottom:8px; }
+.score{ font-size:16px; font-weight:600; margin-bottom:8px; }
+.recog{ font-size:14px; color:#333; margin-bottom:8px; }
+.raw{ font-size:12px; color:#888; white-space:pre-wrap; word-break:break-all; }
